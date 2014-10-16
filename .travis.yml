@@ -1,11 +1,18 @@
 language: cpp
 
-compiler:
- - gcc
+os:
+ - linux
 
-before_install:
+env:
+ - DEFAULT_ENV=1
+ - CXXFLAGS=-m32 CFLAGS=-m32 CPPFLAGS=-m32
+
+install:
+ - uname -a
+ - ulimit -a
  - sudo apt-get update -qq
- - sudo apt-get install python libc6 libstdc++6 git subversion curl elfutils devscripts
+ - sudo apt-get install -qy python libc6 libstdc++6 git subversion curl elfutils devscripts
+ - sudo apt-get install -qy gcc-multilib g++-multilib ia32-libs
  - git clone --depth=1 https://chromium.googlesource.com/chromium/tools/depot_tools.git /tmp/depot_tools
  - export PATH="/tmp/depot_tools:$PATH"
  - git config --global user.email "ci-breakpad@example.com"
@@ -15,18 +22,12 @@ before_install:
  - gclient config --unmanaged --deps-file=DEPS https://github.com/primiano/breakpad.git --name=src
  - gclient sync -n
 
-install:
- - cd /tmp/breakpad_root/src
- - echo $(pwd)
- - ls -la
- - ./configure
- - make -j4
-
 script:
- - uname -a
- - ulimit -a
+ - cd /tmp/breakpad_root/src
+ - ./configure --quiet
+ - make clean V=0
+ - make -j4 V=0
  - make -j4 check
 
 after_failure:
  - cat test-suite.log
-
