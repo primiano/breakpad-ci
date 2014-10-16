@@ -10,6 +10,7 @@ env:
 install:
  - uname -a
  - ulimit -a
+ - sudo dpkg --add-architecture i386
  - sudo apt-get update -qq
  - sudo apt-get install -qy python libc6 libstdc++6 git subversion curl elfutils devscripts
  - sudo apt-get install -qy gcc-multilib g++-multilib ia32-libs
