@@ -12,7 +12,7 @@ install:
  - lsb_release -rcd
  - ulimit -a
  - sudo apt-get update -qq
- - sudo apt-get install -qy python libc libstdc++ git subversion curl elfutils devscripts gcc-multilib g++-multilib ia32-libs
+ - sudo apt-get install -qy python libc6 libstdc++6 git subversion curl elfutils devscripts gcc-multilib g++-multilib ia32-libs
  - git clone --depth=1 https://chromium.googlesource.com/chromium/tools/depot_tools.git /tmp/depot_tools
  - export PATH="/tmp/depot_tools:$PATH"
  - git config --global user.email "ci-breakpad@example.com"
