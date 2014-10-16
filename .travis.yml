@@ -23,7 +23,10 @@ install:
  - make -j4
 
 script:
+ - uname -a
+ - ulimit -a
  - make -j4 check
 
 after_failure:
  - cat test-suite.log
+
