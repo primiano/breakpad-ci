@@ -27,7 +27,7 @@ script:
  - ./configure --quiet
  - make clean V=0
  - make -j4 V=0
- - make -j4 check
+ - make -j4 V=0 check
 
 after_failure:
  - cat test-suite.log
