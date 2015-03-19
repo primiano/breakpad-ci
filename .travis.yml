@@ -27,6 +27,7 @@ script:
  - ./configure --quiet
  - make clean V=0
  - make -j4 V=0
+ - export GTEST_FILTER="-LinuxCoreDumperTest.VerifyDumpWithMultipleThreads:MinidumpWriterTest.DeletedBinary:ExceptionHandlerTest.InstructionPointerMemoryMaxBound:ElfCoreDumpTest.ValidCoreFile"
  - make -j4 V=0 check
 
 after_failure:
